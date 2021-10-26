@@ -21,7 +21,7 @@ const DeletePageItem = ({
   setUpdatePageDate,
   setInputStates,
   setEditId,
-  setUuid
+  setSerialNumber
 
 
 }) => {
@@ -40,8 +40,9 @@ const DeletePageItem = ({
 // 修改功能設定
   function upDate() {
     setInputStates(false)
+    setEditId(uuid)
     setPageName(pageName)
-    setEditId(serialNumber)
+    setSerialNumber(serialNumber)
     setPageExplanation(pageExplanation)
     setCreatePageUser(createPageUser)
     setCreatePageDate(createPageDate)

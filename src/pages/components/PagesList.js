@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const PagesList = ({ 
   data,
-  uuid,
   setData,
   displayData,
   setPageName,
@@ -17,7 +16,6 @@ const PagesList = ({
   setUpdatePageDate,
   setInputStates,
   setEditId,
-  setUuid,
 
  }) => {
   
@@ -60,7 +58,6 @@ const PagesList = ({
                   updatePageUser={updatePageUser}
                   updatePageDate={updatePageDate}
                   setPageName={setPageName}
-                  setId={setUuid}
                   setSerialNumber={setSerialNumber}
                   setPageExplanation={setPageExplanation}
                   setCreatePageUser={setCreatePageUser}

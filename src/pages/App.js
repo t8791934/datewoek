@@ -4,7 +4,6 @@ import PagesList from "./components/PagesList";
 import Header from "./components/Header";
 import Inquire from "./components/InquirePage";
 import "./App.css";
-import { v4 } from "uuid";
 
 const App = () => {
 
@@ -33,9 +32,8 @@ const App = () => {
 
   const [displayData, setDisplayData] = useState([]);
   const [inputStatus, setInputStates] = useState(true);
-
-  const [uuid, setUuid] = useState(v4)
-  const [editId, setEditId] = useState(1);
+  
+  const [editId, setEditId] = useState("");
   const [serialNumber, setSerialNumber] = useState(3);
   const [pageName, setPageName] = useState("");
   const [pageExplanation, setPageExplanation] = useState("");
@@ -43,6 +41,7 @@ const App = () => {
   const [createPageDate, setCreatePageDate] = useState("");
   const [updatePageUser, setUpdatePageUser] = useState("");
   const [updatePageDate, setUpdatePageDate] = useState("");
+  
 
   useEffect(() => {
     setDisplayData(data)},[data])
@@ -82,7 +81,7 @@ const App = () => {
         setDisplayData={setDisplayData}
         displayData={displayData}
         editId={editId}
-        uuid={uuid}/>
+        />
         
         {/* 顯示 */}
       <PagesList  
@@ -99,8 +98,6 @@ const App = () => {
        setDisplayData={setDisplayData}
        setInputStates={setInputStates}
        setEditId={setEditId}
-       setUuid={setUuid}
-       uuid={uuid}
         />
        
     </div>

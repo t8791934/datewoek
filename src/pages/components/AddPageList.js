@@ -10,7 +10,6 @@ function AddPageList (props){
   data,
   setSerialNumber,
   serialNumber,
-  uuid,
   pageName,
   pageExplanation,
   createPageUser,
@@ -25,8 +24,9 @@ function AddPageList (props){
   setUpdatePageDate,
   inputStatus,
   setInputStates,
-  editId
+  editId,
 } = props;
+
 
   function pageNameChange(e) {
     setPageName(e.target.value);
@@ -48,6 +48,37 @@ function AddPageList (props){
   function updatePageDateChange(e) {
     setUpdatePageDate(e.target.value);
   }
+ 
+
+   //修改功能
+   function upEditData(){
+    setInputStates(true)
+    setData((prev)=>{
+        const index = data.findIndex((item)=>{
+            return item.uuid === editId
+        })
+        const newData = [...prev]
+        newData[index].serialNumber=serialNumber
+        newData[index].uuid=editId
+        newData[index].pageName=pageName 
+        newData[index].pageExplanation=pageExplanation 
+        newData[index].createPageUser = createPageUser
+        newData[index].createPageDate=createPageDate
+        newData[index].updatePageUser=updatePageUser
+        newData[index].updatePageDate=updatePageDate
+
+        return newData
+    }
+    )
+    setPageName("")
+    setPageExplanation("")
+    setCreatePageUser("")
+    setCreatePageDate("")
+    setUpdatePageUser("")
+    setUpdatePageDate("")
+  
+    
+}
 
 
   //新增功能
@@ -70,7 +101,7 @@ function AddPageList (props){
             createPageDate,
             updatePageUser,
             updatePageDate,
-          },
+          },  
           ...data,
         ];
       });
@@ -80,48 +111,20 @@ function AddPageList (props){
       setPageExplanation("");
       setCreatePageUser("");
       setCreatePageDate("");
+     
   
     } else {
       alert("請填寫資料");
     }
+    console.log(data)
   }
 
-  //修改功能
-  function upEditData(){
-    setInputStates(true)
-    setData((prev)=>{
-        const index = data.findIndex((item)=>{
-            return item.uuid!==uuid
-        })
-        const newData = [...prev]
-        newData[index]={
-        "serialNumber":editId,
-        "uuid":uuid,
-        "pageName": pageName,
-        "pageExplanation": pageExplanation,
-        "createPageUser": createPageUser,
-        "createPageDate": createPageDate,
-        "updatePageUser": updatePageUser,
-        "updatePageDate": updatePageDate,
-      }
-       return newData
-       
-    })
-    setPageName("")
-    setPageExplanation("")
-    setCreatePageUser("")
-    setCreatePageDate("")
-    setUpdatePageUser("")
-    setUpdatePageDate("")
-    alert("修改成功");
-}
 
   //日期排序功能
   useEffect(() => {
     function changeSort(){
       let newData = [...data]
       newData = [...data].sort((a, b) => a.createPageDate >= b.createPageDate ? 1 :-1);
-      console.log(newData)
       setData(newData)
     }
     changeSort();
